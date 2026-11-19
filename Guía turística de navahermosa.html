@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Villa de Navahermosa | Crónica y Guía del Reino de Castilla</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tipografías históricas y editoriales de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pergamino: {
+              50: '#fcf9f2',
+              100: '#f6eedc',
+              200: '#ebdcc0',
+              300: '#dec59b',
+              400: '#cca770',
+            },
+            carmesi: {
+              600: '#8b1e24',
+              700: '#72161b',
+              800: '#580f13',
+              900: '#3f090c',
+            },
+            oro: {
+              400: '#d4af37',
+              500: '#b8860b',
+              600: '#926806',
+            },
+            madera: {
+              700: '#4a3525',
+              800: '#362519',
+              900: '#23170f',
+            },
+            piedra: {
+              200: '#e2ded5',
+              500: '#78716c',
+              700: '#44403c',
+            }
+          },
+          fontFamily: {
+            display: ['"Cinzel Decorative"', 'serif'],
+            heading: ['"Cinzel"', 'serif'],
+            body: ['"Crimson Text"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Textura de pergamino envejecido y piedra toledana */
+    body {
+      background-color: #f6eedc;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(114, 22, 27, 0.06) 0%, transparent 50%),
+        repeating-linear-gradient(0deg, rgba(74, 53, 37, 0.025) 0px, rgba(74, 53, 37, 0.025) 1px, transparent 1px, transparent 4px);
+      color: #23170f;
+      font-family: 'Crimson Text', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    /* Marco medieval doble con esquinas doradas */
+    .marco-castellano {
+      border: 2px solid #926806;
+      box-shadow: 
+        inset 0 0 0 3px #f6eedc,
+        inset 0 0 0 4px rgba(146, 104, 6, 0.45),
+        0 10px 25px -5px rgba(35, 23, 15, 0.18);
+      position: relative;
+    }
+
+    .marco-oscuro {
+      border: 2px solid #d4af37;
+      box-shadow: 
+        inset 0 0 0 3px #362519,
+        inset 0 0 0 4px rgba(212, 175, 55, 0.35),
+        0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Letra capitular medieval */
+    .capitular::first-letter {
+      font-family: 'Cinzel Decorative', serif;
+      float: left;
+      font-size: 3.4rem;
+      line-height: 0.85;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-left: 2px;
+      color: #72161b;
+      text-shadow: 1px 1px 0px #d4af37;
+    }
+
+    /* Sello de lacre real */
+    .sello-lacre {
+      background: radial-gradient(circle at 35% 35%, #a1232a, #631116 70%, #3d080b 100%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Separador ornamental */
+    .divisor-real {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .divisor-real::before,
+    .divisor-real::after {
+      content: "";
+      height: 2px;
+      flex: 1;
+      max-width: 180px;
+      background: linear-gradient(90deg, transparent, #926806, transparent);
+    }
+
+    /* Transiciones suaves para acordeones y pestañas */
+    .tab-activo {
+      background-color: #72161b !important;
+      color: #fcf9f2 !important;
+      border-color: #d4af37 !important;
+    }
+
+    /* Estilo de impresión para el Pergamino de Viaje */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #pergamino-generado, #pergamino-generado * {
+        visibility: visible;
+      }
+      #pergamino-generado {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-carmesi-700 selection:text-pergamino-50">
+
+  <!-- ===================================================================== -->
+  <!-- BARRA DE NAVEGACIÓN REAL (STICKY HEADER + MENÚ MÓVIL)                 -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-madera-900/95 backdrop-blur-md border-b-2 border-oro-500 text-pergamino-100 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        
+        <!-- Emblema / Escudo de la Villa -->
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 md:w-11 md:h-11 rounded-full sello-lacre border border-oro-400 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+            <!-- SVG Castillo Castellano -->
+            <svg class="w-6 h-6 text-oro-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2 20h20v2H2v-2zm2-2h16v-7h-2v2h-2v-2h-3v2h-2v-2H8v2H6v-2H4v7zm1-9h2V6h2v3h2V5h2v4h2V6h2v3h2V4h-2v1h-2V3h-4v2H9V4H7v1H5V4H3v5h2z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="block font-display text-base sm:text-lg md:text-xl tracking-wider text-oro-400 leading-none">Navahermosa</span>
+            <span class="block font-heading text-[10px] sm:text-xs tracking-[0.2em] uppercase text-pergamino-300 mt-0.5">Villa del Reino de Castilla</span>
+          </div>
+        </a>
+
+        <!-- Enlaces Escritorio -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2 font-heading text-xs xl:text-sm tracking-wide">
+          <a href="#historia" class="px-3 py-2 rounded-lg hover:bg-carmesi-800 hover:text-oro-400 transition">Historia</a>
+          <a href="#monumentos" class="px-3 py-2 rounded-lg hover:bg-carmesi-800 hover:text-oro-400 transition">Monumentos</a>
+          <a href="#mesones" class="px-3 py-2 rounded-lg hover:bg-carmesi-800 hover:text-oro-400 transition">Mesones y Menús</a>
+          <a href="#posadas" class="px-3 py-2 rounded-lg hover:bg-carmesi-800 hover:text-oro-400 transition">Casas Rurales</a>
+          <a href="#fiestas" class="px-3 py-2 rounded-lg hover:bg-carmesi-800 hover:text-oro-400 transition">Fiestas</a>
+          <a href="#actividades" class="px-3 py-2 rounded-lg hover:bg-carmesi-800 hover:text-oro-400 transition">Actividades</a>
+          <a href="#itinerario" class="ml-2 px-4 py-2 rounded-lg bg-carmesi-700 hover:bg-carmesi-600 border border-oro-400 text-pergamino-50 font-semibold shadow transition">
+            Tu Pergamino
+          </a>
+        </nav>
+
+        <!-- Botón Hamburguesa Móvil -->
+        <button id="btn-menu-movil" aria-label="Abrir menú de navegación" class="lg:hidden p-2.5 rounded-lg border border-oro-500/60 text-oro-400 hover:bg-madera-800 focus:outline-none">
+          <svg id="icono-abrir" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icono-cerrar" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="menu-movil" class="hidden lg:hidden bg-madera-800 border-t border-oro-500/40 px-4 pt-3 pb-5 space-y-1.5 font-heading text-sm">
+      <a href="#historia" class="block px-3 py-2.5 rounded-lg hover:bg-carmesi-800 text-pergamino-100">I. Crónica e Historia</a>
+      <a href="#monumentos" class="block px-3 py-2.5 rounded-lg hover:bg-carmesi-800 text-pergamino-100">II. Lugares Emblemáticos</a>
+      <a href="#mesones" class="block px-3 py-2.5 rounded-lg hover:bg-carmesi-800 text-pergamino-100">III. Mesones y Menús Directos</a>
+      <a href="#posadas" class="block px-3 py-2.5 rounded-lg hover:bg-carmesi-800 text-pergamino-100">IV. Posadas y Casas Rurales</a>
+      <a href="#fiestas" class="block px-3 py-2.5 rounded-lg hover:bg-carmesi-800 text-pergamino-100">V. Fiestas y Tradiciones</a>
+      <a href="#actividades" class="block px-3 py-2.5 rounded-lg hover:bg-carmesi-800 text-pergamino-100">VI. Actividades y Comarca</a>
+      <a href="#itinerario" class="block mt-2 px-3 py-3 rounded-lg bg-carmesi-700 border border-oro-400 text-center text-oro-400 font-bold">
+        Crear Pergamino de Viaje
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 1. HERO / PORTADA CASTELLANA                                          -->
+  <!-- ===================================================================== -->
+  <section id="inicio" class="relative overflow-hidden bg-gradient-to-b from-madera-900 via-carmesi-900 to-madera-800 text-pergamino-50 py-16 sm:py-24 lg:py-28 border-b-4 border-oro-500">
+    <!-- Patrón heráldico SVG de fondo -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="patron-castilla" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path d="M40 5 L45 20 L60 20 L48 30 L52 45 L40 36 L28 45 L32 30 L20 20 L35 20 Z" fill="none" stroke="#d4af37" stroke-width="1"/>
+            <circle cx="40" cy="40" r="36" fill="none" stroke="#d4af37" stroke-width="0.5" stroke-dasharray="4 4"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#patron-castilla)" />
+      </svg>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Blasones superiores -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-madera-900/80 border border-oro-400/70 text-oro-400 font-heading text-xs sm:text-sm tracking-[0.18em] uppercase mb-6 shadow-lg">
+        <span>✦</span>
+        <span>Reino de Toledo · Corona de Castilla</span>
+        <span>✦</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-wide text-pergamino-50 drop-shadow-[0_4px_10px_rgba(0,0,0,0.65)] leading-tight">
+        Villa de <span class="text-oro-400">Navahermosa</span>
+      </h1>
+
+      <p class="mt-4 font-heading text-base sm:text-xl md:text-2xl text-pergamino-200 tracking-wider max-w-3xl mx-auto">
+        Puerta Real de los Montes de Toledo y Antesala del Bosque de Cabañeros
+      </p>
+
+      <div class="divisor-real">
+        <svg class="w-7 h-7 text-oro-400" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L14.5 9H22L16 13.5L18.2 21L12 16.5L5.8 21L8 13.5L2 9H9.5L12 2Z"/>
+        </svg>
+      </div>
+
+      <p class="max-w-2xl mx-auto text-lg sm:text-xl text-pergamino-100/90 leading-relaxed mb-10">
+        Adéntrate en tierras de atalayas medievales, olivos centenarios, mesones de caza mayor y romerías declaradas de Interés Turístico Regional. Descubre la guía completa para el viajero que visita nuestra villa.
+      </p>
+
+      <!-- Botones principales de acción -->
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <a href="#mesones" class="px-6 py-3.5 rounded-xl bg-oro-500 hover:bg-oro-400 text-madera-900 font-heading font-bold text-sm sm:text-base tracking-wide shadow-lg transition transform hover:-translate-y-0.5">
+          Ver Mesones y Menús
+        </a>
+        <a href="#posadas" class="px-6 py-3.5 rounded-xl bg-carmesi-700 hover:bg-carmesi-600 text-pergamino-50 border border-oro-400 font-heading font-semibold text-sm sm:text-base tracking-wide shadow-lg transition transform hover:-translate-y-0.5">
+          Casas Rurales y Posadas
+        </a>
+        <a href="#monumentos" class="px-6 py-3.5 rounded-xl bg-madera-900/80 hover:bg-madera-800 text-pergamino-100 border border-pergamino-300/40 font-heading font-semibold text-sm sm:text-base tracking-wide transition">
+          Explorar Monumentos
+        </a>
+      </div>
+
+      <!-- Buscador Rápido del Viajero -->
+      <div class="max-w-3xl mx-auto bg-pergamino-100 text-madera-900 rounded-2xl p-4 sm:p-5 marco-castellano text-left">
+        <label for="buscador-guia" class="block font-heading text-xs sm:text-sm font-bold uppercase tracking-wider text-carmesi-800 mb-2">
+          Consulta los Archivos de la Villa (Busca platos, rutas, monumentos o fiestas):
+        </label>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input 
+            type="text" 
+            id="buscador-guia" 
+            placeholder="Ej. Venado, Castillo de Dos Hermanas, Milagra, Cabañeros, Casas rurales..." 
+            class="w-full px-4 py-3 rounded-xl bg-pergamino-50 border border-oro-600/50 text-madera-900 placeholder-madera-700/60 focus:outline-none focus:ring-2 focus:ring-carmesi-700 text-base"
+          />
+          <button id="btn-limpiar-busqueda" class="hidden px-4 py-3 rounded-xl bg-madera-800 text-pergamino-100 font-heading text-xs uppercase tracking-wider hover:bg-madera-700 shrink-0">
+            Limpiar
+          </button>
+        </div>
+        <!-- Resultados dinámicos del buscador -->
+        <div id="resultados-busqueda" class="hidden mt-4 pt-3 border-t border-oro-600/30 space-y-2 max-h-64 overflow-y-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. HISTORIA DEL REINO Y DE LA VILLA                                   -->
+  <!-- ===================================================================== -->
+  <section id="historia" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-carmesi-700 font-bold">Crónica Histórica</span>
+      <h2 class="font-display text-2xl sm:text-4xl text-madera-900 mt-1">De Atalaya Fronteriza a Real Villa</h2>
+      <div class="divisor-real">
+        <span class="text-oro-600 text-xl">⚜</span>
+      </div>
+      <p class="text-lg sm:text-xl text-madera-700">
+        El devenir de Navahermosa está grabado en piedra berroqueña entre los pasos naturales que unían Toledo con las tierras del Guadiana.
+      </p>
+    </div>
+
+    <!-- Relato Introductorio con Letra Capitular -->
+    <div class="bg-pergamino-50 rounded-2xl p-6 sm:p-10 marco-castellano mb-12">
+      <p class="capitular text-lg sm:text-xl leading-relaxed text-madera-900 mb-4">
+        Enclavada en una hermosa nava al pie de la sierra de Galinda y el risco de Dos Hermanas, Navahermosa nació como enclave estratégico de vigilancia y repoblación tras la conquista de Toledo por Alfonso VI en 1085. Durante siglos formó parte de los extensos Montes de Toledo, tierras de realengo y señorío concejil donde pastores, colmeneros, carboneros y monteros forjaron el carácter recio y hospitalario de Castilla la Nueva.
+      </p>
+      <p class="text-lg sm:text-xl leading-relaxed text-madera-800">
+        Tras pertenecer jurisdiccionalmente a la ciudad de Toledo, su crecimiento demográfico y riqueza agropecuaria llevaron a que el monarca <strong>Carlos II le concediera el privilegio de Villazgo en el año 1678</strong>, otorgándole jurisdicción propia y consolidándola como cabecera natural de esta vertiente de los Montes.
+      </p>
+    </div>
+
+    <!-- Línea Temporal Interactiva -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Hito 1 -->
+      <article class="bg-pergamino-50 rounded-2xl p-6 marco-castellano flex flex-col justify-between hover:-translate-y-1 transition">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-carmesi-800 text-oro-400 font-heading text-xs font-bold tracking-wider mb-3">Siglos XI – XII</span>
+          <h3 class="font-heading text-xl font-bold text-madera-900 mb-2">El Castillo de Dos Hermanas</h3>
+          <p class="text-base sm:text-lg text-madera-700 leading-relaxed">
+            Fortaleza levantada sobre un escarpado cerro para controlar el paso serrano. La tradición oral conserva la leyenda de dos princesas moras ocultas en sus muros tras la caída de Toledo.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-oro-600/25 text-xs font-heading uppercase tracking-wider text-carmesi-700">
+          Frontera de la Marca Media
+        </div>
+      </article>
+
+      <!-- Hito 2 -->
+      <article class="bg-pergamino-50 rounded-2xl p-6 marco-castellano flex flex-col justify-between hover:-translate-y-1 transition">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-carmesi-800 text-oro-400 font-heading text-xs font-bold tracking-wider mb-3">Siglos XIII – XV</span>
+          <h3 class="font-heading text-xl font-bold text-madera-900 mb-2">Repoblación y Montes de Toledo</h3>
+          <p class="text-base sm:text-lg text-madera-700 leading-relaxed">
+            Fernando III el Santo vende los Montes a la ciudad de Toledo en 1246. Se asientan colmeneros y labradores en el valle ("Nava Hermosa"), aprovechando sus aguas y pastos.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-oro-600/25 text-xs font-heading uppercase tracking-wider text-carmesi-700">
+          Tierras de los Propios de Toledo
+        </div>
+      </article>
+
+      <!-- Hito 3 -->
+      <article class="bg-pergamino-50 rounded-2xl p-6 marco-castellano flex flex-col justify-between hover:-translate-y-1 transition">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-carmesi-800 text-oro-400 font-heading text-xs font-bold tracking-wider mb-3">Siglo XVI – 1678</span>
+          <h3 class="font-heading text-xl font-bold text-madera-900 mb-2">Templo Mayor y Título de Villa</h3>
+          <p class="text-base sm:text-lg text-madera-700 leading-relaxed">
+            Se edifica la monumental Iglesia de San Miguel Arcángel. En 1678, mediante Real Cédula de Carlos II, Navahermosa obtiene la exención de Toledo y el título oficial de Villa.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-oro-600/25 text-xs font-heading uppercase tracking-wider text-carmesi-700">
+          Privilegio Real de Villazgo
+        </div>
+      </article>
+
+      <!-- Hito 4 -->
+      <article class="bg-pergamino-50 rounded-2xl p-6 marco-castellano flex flex-col justify-between hover:-translate-y-1 transition">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-carmesi-800 text-oro-400 font-heading text-xs font-bold tracking-wider mb-3">Siglo XVIII – Actualidad</span>
+          <h3 class="font-heading text-xl font-bold text-madera-900 mb-2">Capitalidad Monteña y Olivar</h3>
+          <p class="text-base sm:text-lg text-madera-700 leading-relaxed">
+            Consolidación de su tradición olivarera (D.O. Montes de Toledo), cinegética y devocional en torno a la Virgen del Milagro, convirtiéndose en referente turístico natural.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-oro-600/25 text-xs font-heading uppercase tracking-wider text-carmesi-700">
+          Corazón de los Montes
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. LUGARES EMBLEMÁTICOS (CON ILUSTRACIONES SVG MEDIEVALES)            -->
+  <!-- ===================================================================== -->
+  <section id="monumentos" class="py-16 sm:py-24 bg-pergamino-200/70 border-y-2 border-oro-600/40 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-carmesi-700 font-bold">Patrimonio de Piedra y Fe</span>
+        <h2 class="font-display text-2xl sm:text-4xl text-madera-900 mt-1">Lugares Emblemáticos de la Villa</h2>
+        <div class="divisor-real">
+          <span class="text-oro-600 text-xl">🏰</span>
+        </div>
+        <p class="text-lg sm:text-xl text-madera-700">
+          Recorre los hitos arquitectónicos y espirituales que custodian la memoria de Navahermosa desde la Edad Media hasta el Barroco castellano.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Monumento 1: Castillo de Dos Hermanas -->
+        <div class="bg-pergamino-50 rounded-2xl overflow-hidden marco-castellano flex flex-col">
+          <!-- Ilustración SVG estilo grabado medieval -->
+          <div class="h-52 bg-gradient-to-br from-madera-900 via-carmesi-900 to-madera-800 relative flex items-center justify-center p-4 border-b-2 border-oro-600">
+            <svg class="w-full h-full max-w-md" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sol / Luna heráldica -->
+              <circle cx="320" cy="45" r="22" fill="#d4af37" fill-opacity="0.2" stroke="#d4af37" stroke-width="1.5"/>
+              <!-- Montaña escarpada -->
+              <path d="M20 170 L110 85 L180 110 L260 65 L380 170 Z" fill="#23170f" stroke="#926806" stroke-width="1.5"/>
+              <path d="M90 170 L185 75 L290 170 Z" fill="#362519" stroke="#d4af37" stroke-width="1.5"/>
+              <!-- Torres del Castillo -->
+              <rect x="155" y="42" width="24" height="45" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <path d="M153 42 H160 V36 H165 V42 H170 V36 H175 V42 H181" stroke="#d4af37" stroke-width="1.5"/>
+              <rect x="195" y="34" width="28" height="53" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <path d="M193 34 H200 V28 H206 V34 H212 V28 H218 V34 H225" stroke="#d4af37" stroke-width="1.5"/>
+              <!-- Muralla conectora -->
+              <rect x="179" y="58" width="16" height="28" fill="#362519" stroke="#d4af37" stroke-width="1.2"/>
+            </svg>
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-madera-900/90 border border-oro-400 text-oro-400 font-heading text-xs">Siglos XI – XII</span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-carmesi-800 mb-2">Castillo de Dos Hermanas</h3>
+              <p class="text-lg text-madera-800 leading-relaxed mb-4">
+                Alzado sobre un imponente risco granítico a las afueras del casco urbano, este bastión defensivo vigilaba el paso natural hacia los Montes de Toledo. Sus restos de mampostería y torres desmochadas ofrecen uno de los miradores más espectaculares de toda la provincia.
+              </p>
+            </div>
+            <div class="bg-pergamino-100 rounded-xl p-4 border border-oro-600/30 text-sm sm:text-base space-y-1">
+              <p><strong class="font-heading text-carmesi-800">Acceso:</strong> Pista forestal apta hasta la base y ascenso a pie de 15 minutos por sendero.</p>
+              <p><strong class="font-heading text-carmesi-800">Imprescindible:</strong> Contemplar el atardecer sobre el mar de olivos y la sierra.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monumento 2: Parroquia de San Miguel Arcángel -->
+        <div class="bg-pergamino-50 rounded-2xl overflow-hidden marco-castellano flex flex-col">
+          <div class="h-52 bg-gradient-to-br from-carmesi-900 via-madera-900 to-madera-800 relative flex items-center justify-center p-4 border-b-2 border-oro-600">
+            <svg class="w-full h-full max-w-md" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Base plaza -->
+              <line x1="40" y1="165" x2="360" y2="165" stroke="#d4af37" stroke-width="2"/>
+              <!-- Nave principal -->
+              <rect x="110" y="90" width="160" height="75" fill="#362519" stroke="#d4af37" stroke-width="1.5"/>
+              <polygon points="105,90 190,55 275,90" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <!-- Torre campanario -->
+              <rect x="245" y="32" width="42" height="133" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <polygon points="242,32 266,12 290,32" fill="#72161b" stroke="#d4af37" stroke-width="1.5"/>
+              <line x1="266" y1="4" x2="266" y2="12" stroke="#d4af37" stroke-width="2"/>
+              <line x1="262" y1="8" x2="270" y2="8" stroke="#d4af37" stroke-width="2"/>
+              <!-- Arcos campanario y portada -->
+              <path d="M256 58 V46 A10 10 0 0 1 276 46 V58 Z" fill="#23170f" stroke="#d4af37" stroke-width="1.2"/>
+              <path d="M168 165 V125 A22 22 0 0 1 212 125 V165 Z" fill="#23170f" stroke="#d4af37" stroke-width="1.5"/>
+              <circle cx="190" cy="76" r="9" stroke="#d4af37" stroke-width="1.5"/>
+            </svg>
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-madera-900/90 border border-oro-400 text-oro-400 font-heading text-xs">Siglo XVI · Renacimiento</span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-carmesi-800 mb-2">Parroquia de San Miguel Arcángel</h3>
+              <p class="text-lg text-madera-800 leading-relaxed mb-4">
+                Corazón monumental del centro histórico. Erigida en el siglo XVI bajo cánones renacentistas y herrerianos, destaca por su elegante torre campanario (añadida en el XIX) y su sobria sillería granítica.
+              </p>
+            </div>
+            <div class="bg-pergamino-100 rounded-xl p-4 border border-oro-600/30 text-sm sm:text-base space-y-1">
+              <p><strong class="font-heading text-carmesi-800">Joyas interiores:</strong> Artesonado mudéjar, retablos barrocos y su célebre órgano de 1775.</p>
+              <p><strong class="font-heading text-carmesi-800">Ubicación:</strong> Plaza de la Iglesia (centro urbano).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monumento 3: Ermita de Nuestra Señora del Milagro (La Milagra) -->
+        <div class="bg-pergamino-50 rounded-2xl overflow-hidden marco-castellano flex flex-col">
+          <div class="h-52 bg-gradient-to-br from-madera-800 via-madera-900 to-carmesi-900 relative flex items-center justify-center p-4 border-b-2 border-oro-600">
+            <svg class="w-full h-full max-w-md" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Encinas silueta -->
+              <circle cx="75" cy="120" r="28" fill="#362519" stroke="#926806" stroke-width="1.2"/>
+              <rect x="71" y="135" width="8" height="30" fill="#4a3525"/>
+              <circle cx="325" cy="115" r="32" fill="#362519" stroke="#926806" stroke-width="1.2"/>
+              <rect x="321" y="135" width="8" height="30" fill="#4a3525"/>
+              <!-- Ermita rural con espadaña -->
+              <rect x="135" y="95" width="130" height="70" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <polygon points="128,95 200,62 272,95" fill="#72161b" stroke="#d4af37" stroke-width="1.5"/>
+              <!-- Espadaña -->
+              <rect x="188" y="35" width="24" height="30" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <circle cx="200" cy="48" r="5" fill="#d4af37"/>
+              <path d="M188 165 V130 A12 12 0 0 1 212 130 V165 Z" fill="#23170f" stroke="#d4af37" stroke-width="1.5"/>
+            </svg>
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-madera-900/90 border border-oro-400 text-oro-400 font-heading text-xs">Santuario Patronal</span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-carmesi-800 mb-2">Ermita de la Virgen del Milagro (La Milagra)</h3>
+              <p class="text-lg text-madera-800 leading-relaxed mb-4">
+                Situada en un paraje de dehesa y monte mediterráneo a unos 4 kilómetros del pueblo, este santuario acoge la venerada imagen de la Patrona de Navahermosa y es el epicentro espiritual de la localidad.
+              </p>
+            </div>
+            <div class="bg-pergamino-100 rounded-xl p-4 border border-oro-600/30 text-sm sm:text-base space-y-1">
+              <p><strong class="font-heading text-carmesi-800">Nota de visita:</strong> El interior abre principalmente en fechas señaladas y romería; su entorno natural es visitable todo el año.</p>
+              <p><strong class="font-heading text-carmesi-800">Tradición:</strong> Destino de la gran Romería de mayo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monumento 4: Ermita de San Sebastián -->
+        <div class="bg-pergamino-50 rounded-2xl overflow-hidden marco-castellano flex flex-col">
+          <div class="h-52 bg-gradient-to-br from-madera-900 via-madera-800 to-carmesi-900 relative flex items-center justify-center p-4 border-b-2 border-oro-600">
+            <svg class="w-full h-full max-w-md" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="50" y1="165" x2="350" y2="165" stroke="#d4af37" stroke-width="2"/>
+              <!-- Edificio tradicional -->
+              <rect x="120" y="92" width="160" height="73" fill="#362519" stroke="#d4af37" stroke-width="1.5"/>
+              <polygon points="112,92 200,58 288,92" fill="#4a3525" stroke="#d4af37" stroke-width="1.5"/>
+              <!-- Cruz superior -->
+              <line x1="200" y1="38" x2="200" y2="58" stroke="#d4af37" stroke-width="2"/>
+              <line x1="193" y1="45" x2="207" y2="45" stroke="#d4af37" stroke-width="2"/>
+              <!-- Ventanas y puerta -->
+              <rect x="145" y="115" width="16" height="24" fill="#23170f" stroke="#d4af37" stroke-width="1.2"/>
+              <rect x="239" y="115" width="16" height="24" fill="#23170f" stroke="#d4af37" stroke-width="1.2"/>
+              <path d="M185 165 V125 A15 15 0 0 1 215 125 V165 Z" fill="#23170f" stroke="#d4af37" stroke-width="1.5"/>
+            </svg>
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-madera-900/90 border border-oro-400 text-oro-400 font-heading text-xs">Siglos XVI – XVII</span>
+          </div>
+          <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-carmesi-800 mb-2">Ermita de San Sebastián</h3>
+              <p class="text-lg text-madera-800 leading-relaxed mb-4">
+                Joya de la arquitectura religiosa popular castellana ubicada junto al antiguo Camino Real de Toledo. Documentada desde el siglo XVI y reedificada en el XVII, conserva su sobria planta rectangular y fábrica tradicional.
+              </p>
+            </div>
+            <div class="bg-pergamino-100 rounded-xl p-4 border border-oro-600/30 text-sm sm:text-base space-y-1">
+              <p><strong class="font-heading text-carmesi-800">Festividad:</strong> Cada 20 de enero es el punto de reunión para las lumbres y procesión del Santo.</p>
+              <p><strong class="font-heading text-carmesi-800">Estilo:</strong> Arquitectura popular toledana.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. MESONES Y GASTRONOMÍA (CON MENÚS DIRECTOS DESPLEGABLES)            -->
+  <!-- ===================================================================== -->
+  <section id="mesones" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-carmesi-700 font-bold">Yantar y Buen Vino en los Montes</span>
+      <h2 class="font-display text-2xl sm:text-4xl text-madera-900 mt-1">Mesones, Tabernas y Menús Directos</h2>
+      <div class="divisor-real">
+        <span class="text-oro-600 text-xl">🍷</span>
+      </div>
+      <p class="text-lg sm:text-xl text-madera-700">
+        La mesa de Navahermosa rinde culto a la <strong>caza mayor y menor</strong> (venado, jabalí, perdiz), las <strong>migas del pastor</strong> y el <strong>Aceite de Oliva Virgen Extra D.O. Montes de Toledo</strong>. Selecciona un establecimiento para consultar su carta y menú directamente.
+      </p>
+    </div>
+
+    <!-- Aviso informativo claro sobre cartas ilustrativas -->
+    <div class="max-w-4xl mx-auto mb-8 bg-pergamino-100 border-l-4 border-carmesi-700 p-4 rounded-r-xl text-sm sm:text-base text-madera-800">
+      <strong>Nota del Cronista Gastronómico:</strong> Los establecimientos mostrados son locales reales de Navahermosa. Las cartas, menús y tarifas detalladas constituyen una <em>selección ilustrativa basada en sus especialidades tradicionales</em> para orientar al visitante antes de su llegada.
+    </div>
+
+    <!-- Selector de Mesones (Pestañas Interactivas) -->
+    <div id="tabs-mesones" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
+      <!-- Se renderiza dinámicamente con JS para máxima fluidez -->
+    </div>
+
+    <!-- Visor del Menú Directo del Mesón Seleccionado -->
+    <div id="contenedor-menu-activo" class="bg-pergamino-50 rounded-2xl p-6 sm:p-10 marco-castellano transition-all">
+      <!-- Contenido inyectado por JS -->
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. POSADAS Y CASAS RURALES (ALOJAMIENTOS CON FILTROS)                 -->
+  <!-- ===================================================================== -->
+  <section id="posadas" class="py-16 sm:py-24 bg-madera-900 text-pergamino-100 border-y-4 border-oro-500 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-oro-400 font-bold">Descanso del Caminante</span>
+        <h2 class="font-display text-2xl sm:text-4xl text-pergamino-50 mt-1">Posadas, Hostales y Casas Rurales</h2>
+        <div class="divisor-real">
+          <span class="text-oro-400 text-xl">🛏️</span>
+        </div>
+        <p class="text-lg sm:text-xl text-pergamino-200">
+          Ya busques comodidad en el corazón de la villa o el silencio de una casa de piedra rodeada de encinas, aquí tienes las mejores opciones para pernoctar en Navahermosa y su entorno inmediato.
+        </p>
+      </div>
+
+      <!-- Filtros de Alojamiento -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+        <button data-filtro-aloj="todos" class="filtro-aloj tab-activo px-4 py-2.5 rounded-xl border border-oro-500/60 font-heading text-xs sm:text-sm tracking-wide transition">
+          Todos los Alojamientos
+        </button>
+        <button data-filtro-aloj="pueblo" class="filtro-aloj px-4 py-2.5 rounded-xl bg-madera-800 hover:bg-carmesi-800 border border-oro-500/40 font-heading text-xs sm:text-sm tracking-wide transition">
+          En el Casco Urbano
+        </button>
+        <button data-filtro-aloj="naturaleza" class="filtro-aloj px-4 py-2.5 rounded-xl bg-madera-800 hover:bg-carmesi-800 border border-oro-500/40 font-heading text-xs sm:text-sm tracking-wide transition">
+          En Plena Naturaleza / Sierra
+        </button>
+        <button data-filtro-aloj="grupos" class="filtro-aloj px-4 py-2.5 rounded-xl bg-madera-800 hover:bg-carmesi-800 border border-oro-500/40 font-heading text-xs sm:text-sm tracking-wide transition">
+          Casas Rurales para Grupos
+        </button>
+      </div>
+
+      <!-- Grid de Alojamientos -->
+      <div id="grid-alojamientos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Renderizado por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 6. FIESTAS, FECHAS Y TRADICIONES DEL PUEBLO                           -->
+  <!-- ===================================================================== -->
+  <section id="fiestas" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-carmesi-700 font-bold">Calendario Festivo y Costumbres</span>
+      <h2 class="font-display text-2xl sm:text-4xl text-madera-900 mt-1">Fiestas y Tradiciones de Navahermosa</h2>
+      <div class="divisor-real">
+        <span class="text-oro-600 text-xl">🎺</span>
+      </div>
+      <p class="text-lg sm:text-xl text-madera-700">
+        El pulso anual de la villa late al ritmo de sus romerías centenarias, sus hogueras de invierno, la cosecha del oro líquido y la berrea en el monte.
+      </p>
+    </div>
+
+    <!-- Tarjetas de Fiestas Principales -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-14">
+      
+      <!-- Fiesta 1: San Sebastián -->
+      <div class="bg-pergamino-50 rounded-2xl p-6 sm:p-8 marco-castellano flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-carmesi-700 text-pergamino-50 font-heading text-xs font-bold uppercase tracking-wider">20 de Enero</span>
+            <span class="text-2xl">🔥</span>
+          </div>
+          <h3 class="font-heading text-2xl font-bold text-madera-900 mb-3">Fiesta de San Sebastián</h3>
+          <p class="text-lg text-madera-800 leading-relaxed mb-4">
+            En pleno corazón del invierno castellano, los vecinos honran al santo mártir en torno a su ermita. Es una de las celebraciones más entrañables y participativas del calendario invernal.
+          </p>
+          <ul class="space-y-2 text-base text-madera-700 border-t border-oro-600/30 pt-4">
+            <li><strong class="text-carmesi-800">• Lumbres y Hogueras:</strong> Encendido de grandes hogueras vecinales en la víspera para combatir el frío serrano.</li>
+            <li><strong class="text-carmesi-800">• Procesión y Misa:</strong> Traslado de la imagen desde su ermita histórica.</li>
+            <li><strong class="text-carmesi-800">• Convite popular:</strong> Reparto de productos típicos, chorizos asados y vino de la tierra.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fiesta 2: Romería de la Virgen del Milagro (La Milagra) -->
+      <div class="bg-pergamino-50 rounded-2xl p-6 sm:p-8 marco-castellano ring-2 ring-oro-500 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-oro-500 text-madera-900 font-heading text-xs font-bold uppercase tracking-wider">3er Domingo de Mayo</span>
+            <span class="text-2xl">👑</span>
+          </div>
+          <div class="inline-block text-xs font-heading uppercase tracking-wider text-carmesi-700 font-bold mb-1">
+            ★ Fiesta de Interés Turístico Regional
+          </div>
+          <h3 class="font-heading text-2xl font-bold text-madera-900 mb-3">Romería de la Virgen del Milagro</h3>
+          <p class="text-lg text-madera-800 leading-relaxed mb-4">
+            El día grande por excelencia de Navahermosa. Miles de romeros y visitantes acuden a acompañar a <em>La Milagra</em> en su santuario campestre rodeado de encinas.
+          </p>
+          <ul class="space-y-2 text-base text-madera-700 border-t border-oro-600/30 pt-4">
+            <li><strong class="text-carmesi-800">• Bajada y Subida:</strong> Procesión multitudinaria desde el pueblo hasta la ermita (4 km).</li>
+            <li><strong class="text-carmesi-800">• Carrozas y Caballistas:</strong> Desfile de carrozas engalanadas y jinetes con traje tradicional.</li>
+            <li><strong class="text-carmesi-800">• Día de Campo:</strong> Comidas familiares bajo las encinas, música y baile de la bandera.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fiesta 3: Fiestas Patronales de San Miguel Arcángel -->
+      <div class="bg-pergamino-50 rounded-2xl p-6 sm:p-8 marco-castellano flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-carmesi-700 text-pergamino-50 font-heading text-xs font-bold uppercase tracking-wider">Finales de Septiembre (29 Sept)</span>
+            <span class="text-2xl">⚔️</span>
+          </div>
+          <h3 class="font-heading text-2xl font-bold text-madera-900 mb-3">Fiestas de San Miguel Arcángel</h3>
+          <p class="text-lg text-madera-800 leading-relaxed mb-4">
+            Con el fin de la cosecha y el inicio del otoño, la villa celebra sus fiestas mayores en honor a su patrón con cinco días de intensa alegría en sus plazas.
+          </p>
+          <ul class="space-y-2 text-base text-madera-700 border-t border-oro-600/30 pt-4">
+            <li><strong class="text-carmesi-800">• Pregón y Coronación:</strong> Apertura oficial en la Plaza y desfile de peñas y charangas.</li>
+            <li><strong class="text-carmesi-800">• Festejos Taurinos:</strong> Tradicionales encierros y corridas en la plaza de toros.</li>
+            <li><strong class="text-carmesi-800">• Verbenas y Pólvora:</strong> Orquestas nocturnas, procesión solemne del 29 de septiembre y traca final.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bloque de Tradiciones Ancestrales del Pueblo -->
+    <div class="bg-pergamino-100 rounded-2xl p-6 sm:p-10 marco-castellano">
+      <h3 class="font-heading text-2xl font-bold text-carmesi-800 mb-6 text-center">Usos, Oficios y Tradiciones de la Tierra</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-pergamino-50 p-5 rounded-xl border border-oro-600/30">
+          <div class="text-2xl mb-2">🫒</div>
+          <h4 class="font-heading font-bold text-lg text-madera-900 mb-1">La Cosecha del Oro Líquido</h4>
+          <p class="text-base text-madera-700">Entre noviembre y enero, las almazaras trabajan sin descanso produciendo Aceite de Oliva Virgen Extra variedad cornicabra bajo la D.O. Montes de Toledo.</p>
+        </div>
+        <div class="bg-pergamino-50 p-5 rounded-xl border border-oro-600/30">
+          <div class="text-2xl mb-2">🦌</div>
+          <h4 class="font-heading font-bold text-lg text-madera-900 mb-1">La Berrea y la Montería</h4>
+          <p class="text-base text-madera-700">En septiembre y octubre resuena el bramido de los ciervos en la sierra. La cultura cinegética es seña de identidad y motor gastronómico local.</p>
+        </div>
+        <div class="bg-pergamino-50 p-5 rounded-xl border border-oro-600/30">
+          <div class="text-2xl mb-2">🐖</div>
+          <h4 class="font-heading font-bold text-lg text-madera-900 mb-1">La Matanza Tradicional</h4>
+          <p class="text-base text-madera-700">Rito invernal de reunión familiar donde se elaboran chorizos, morcillas, lomos de orza y las tradicionales migas de matanza.</p>
+        </div>
+        <div class="bg-pergamino-50 p-5 rounded-xl border border-oro-600/30">
+          <div class="text-2xl mb-2">🍯</div>
+          <h4 class="font-heading font-bold text-lg text-madera-900 mb-1">Colmeneros y Miel de Monte</h4>
+          <p class="text-base text-madera-700">Heredera de la antigua Hermandad de Colmeneros de los Montes, la apicultura local produce mieles puras de romero, tomillo y brezo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 7. ACTIVIDADES EN NAVAHERMOSA Y PUEBLOS CERCANOS                      -->
+  <!-- ===================================================================== -->
+  <section id="actividades" class="py-16 sm:py-24 bg-pergamino-200/70 border-t-2 border-oro-600/40 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-carmesi-700 font-bold">Aventura, Senderos y Comarca</span>
+        <h2 class="font-display text-2xl sm:text-4xl text-madera-900 mt-1">Actividades en Navahermosa y Alrededores</h2>
+        <div class="divisor-real">
+          <span class="text-oro-600 text-xl">🧭</span>
+        </div>
+        <p class="text-lg sm:text-xl text-madera-700">
+          Usa Navahermosa como campamento base para recorrer tanto sus propios senderos serranos como las joyas históricas y naturales de los pueblos vecinos.
+        </p>
+      </div>
+
+      <!-- Filtro por Destino -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+        <button data-filtro-act="todas" class="filtro-act tab-activo px-4 py-2 rounded-xl bg-pergamino-50 border border-oro-600 font-heading text-xs sm:text-sm font-semibold transition">
+          Todas las Rutas y Planes
+        </button>
+        <button data-filtro-act="navahermosa" class="filtro-act px-4 py-2 rounded-xl bg-pergamino-50 hover:bg-pergamino-100 border border-oro-600/50 font-heading text-xs sm:text-sm font-semibold text-madera-900 transition">
+          En Navahermosa
+        </button>
+        <button data-filtro-act="hontanar" class="filtro-act px-4 py-2 rounded-xl bg-pergamino-50 hover:bg-pergamino-100 border border-oro-600/50 font-heading text-xs sm:text-sm font-semibold text-madera-900 transition">
+          Hontanar y Malamoneda (10 min)
+        </button>
+        <button data-filtro-act="montalban" class="filtro-act px-4 py-2 rounded-xl bg-pergamino-50 hover:bg-pergamino-100 border border-oro-600/50 font-heading text-xs sm:text-sm font-semibold text-madera-900 transition">
+          San Martín de Montalbán (20 min)
+        </button>
+        <button data-filtro-act="cabaneros" class="filtro-act px-4 py-2 rounded-xl bg-pergamino-50 hover:bg-pergamino-100 border border-oro-600/50 font-heading text-xs sm:text-sm font-semibold text-madera-900 transition">
+          Cabañeros y Comarca (25 min)
+        </button>
+      </div>
+
+      <!-- Tarjetas de Actividades -->
+      <div id="grid-actividades" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Renderizado por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 8. GENERADOR INTERACTIVO DE PERGAMINO DE VIAJE                        -->
+  <!-- ===================================================================== -->
+  <section id="itinerario" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-carmesi-700 font-bold">Cancillería del Viajero</span>
+      <h2 class="font-display text-2xl sm:text-4xl text-madera-900 mt-1">Forja tu Pergamino de Viaje</h2>
+      <div class="divisor-real">
+        <span class="text-oro-600 text-xl">📜</span>
+      </div>
+      <p class="text-lg sm:text-xl text-madera-700">
+        Elige la duración de tu estancia y tus preferencias para redactar al instante un itinerario personalizado por Navahermosa y los Montes de Toledo.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Panel de Configuración -->
+      <div class="lg:col-span-5 bg-pergamino-50 rounded-2xl p-6 sm:p-8 marco-castellano space-y-6">
+        <div>
+          <label class="block font-heading text-sm font-bold text-carmesi-800 uppercase tracking-wider mb-2">
+            1. Duración de la Estancia
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" data-dias="1" class="btn-dias tab-activo py-2.5 px-3 rounded-xl border border-oro-600 font-heading text-sm font-semibold">
+              1 Día (Escapada)
+            </button>
+            <button type="button" data-dias="2" class="btn-dias py-2.5 px-3 rounded-xl bg-pergamino-100 border border-oro-600/50 font-heading text-sm font-semibold text-madera-900">
+              2 Días (Fin de Semana)
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-heading text-sm font-bold text-carmesi-800 uppercase tracking-wider mb-2">
+            2. Intereses del Viajero
+          </label>
+          <div class="space-y-2.5 text-base">
+            <label class="flex items-center gap-3 p-2.5 rounded-lg bg-pergamino-100 cursor-pointer hover:bg-pergamino-200/70">
+              <input type="checkbox" value="historia" checked class="chk-interes w-4 h-4 accent-carmesi-700" />
+              <span>Castillos, Ermitas e Historia Medieval</span>
+            </label>
+            <label class="flex items-center gap-3 p-2.5 rounded-lg bg-pergamino-100 cursor-pointer hover:bg-pergamino-200/70">
+              <input type="checkbox" value="senderismo" checked class="chk-interes w-4 h-4 accent-carmesi-700" />
+              <span>Senderismo (Hoz de Carboneros / Cabañeros)</span>
+            </label>
+            <label class="flex items-center gap-3 p-2.5 rounded-lg bg-pergamino-100 cursor-pointer hover:bg-pergamino-200/70">
+              <input type="checkbox" value="gastronomia" checked class="chk-interes w-4 h-4 accent-carmesi-700" />
+              <span>Gastronomía de Caza y Aceite D.O.</span>
+            </label>
+            <label class="flex items-center gap-3 p-2.5 rounded-lg bg-pergamino-100 cursor-pointer hover:bg-pergamino-200/70">
+              <input type="checkbox" value="comarca" class="chk-interes w-4 h-4 accent-carmesi-700" />
+              <span>Excursiones a Melque y Malamoneda</span>
+            </label>
+          </div>
+        </div>
+
+        <button id="btn-generar-pergamino" class="w-full py-3.5 px-6 rounded-xl bg-carmesi-700 hover:bg-carmesi-600 text-pergamino-50 border border-oro-400 font-heading font-bold tracking-wider uppercase shadow-lg transition">
+          Redactar Pergamino Real
+        </button>
+      </div>
+
+      <!-- Resultado del Pergamino -->
+      <div id="pergamino-generado" class="lg:col-span-7 bg-pergamino-50 rounded-2xl p-6 sm:p-10 marco-castellano relative">
+        <div class="flex items-center justify-between border-b-2 border-oro-600/40 pb-4 mb-6">
+          <div>
+            <span class="font-heading text-xs uppercase tracking-[0.2em] text-carmesi-700">Salvoconducto Turístico</span>
+            <h3 class="font-display text-xl sm:text-2xl text-madera-900">Itinerario por la Villa de Navahermosa</h3>
+          </div>
+          <div class="w-12 h-12 rounded-full sello-lacre border border-oro-400 flex items-center justify-center text-oro-400 font-display text-lg shrink-0">
+            N
+          </div>
+        </div>
+
+        <div id="contenido-pergamino" class="space-y-5 text-base sm:text-lg text-madera-800 leading-relaxed">
+          <!-- Generado por JS -->
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-oro-600/30 flex flex-wrap items-center justify-between gap-3">
+          <button id="btn-copiar-itinerario" class="px-4 py-2 rounded-lg bg-madera-800 hover:bg-madera-700 text-pergamino-100 font-heading text-xs uppercase tracking-wider transition">
+            Copiar Texto
+          </button>
+          <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-oro-500 hover:bg-oro-400 text-madera-900 font-heading text-xs font-bold uppercase tracking-wider transition">
+            Imprimir Pergamino
+          </button>
+        </div>
+        <p id="mensaje-copiado" class="hidden mt-2 text-sm text-carmesi-700 font-semibold">
+          ✓ El itinerario ha sido copiado al portapapeles.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL INTERACTIVO PARA CONSULTA DE ALOJAMIENTO                        -->
+  <!-- ===================================================================== -->
+  <div id="modal-reserva" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+    <div class="bg-pergamino-50 text-madera-900 rounded-2xl max-w-lg w-full p-6 sm:p-8 marco-castellano relative">
+      <button id="cerrar-modal" aria-label="Cerrar ventana" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-madera-800 text-pergamino-100 flex items-center justify-center hover:bg-carmesi-700">
+        ✕
+      </button>
+      <span class="font-heading text-xs uppercase tracking-widest text-carmesi-700 font-bold">Solicitud de Posada</span>
+      <h3 id="modal-titulo-aloj" class="font-heading text-2xl font-bold text-madera-900 mt-1 mb-2">Nombre del Alojamiento</h3>
+      <p id="modal-desc-aloj" class="text-base text-madera-700 mb-5">Detalles de estancia</p>
+
+      <form id="form-consulta-aloj" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-heading text-xs font-bold uppercase text-madera-800 mb-1">Fecha de llegada</label>
+            <input type="date" required class="w-full px-3 py-2 rounded-lg bg-pergamino-100 border border-oro-600/50 text-madera-900" />
+          </div>
+          <div>
+            <label class="block font-heading text-xs font-bold uppercase text-madera-800 mb-1">Viajeros</label>
+            <select class="w-full px-3 py-2 rounded-lg bg-pergamino-100 border border-oro-600/50 text-madera-900">
+              <option>2 Adultos</option>
+              <option>Familia (2 Adultos + 2 Niños)</option>
+              <option>Grupo (6 - 10 personas)</option>
+              <option>Viajero solitario</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-heading text-xs font-bold uppercase text-madera-800 mb-1">Notas o peticiones (Chimenea, mascotas, rutas...)</label>
+          <textarea rows="2" placeholder="Indica tus preferencias para tu estancia en Navahermosa..." class="w-full px-3 py-2 rounded-lg bg-pergamino-100 border border-oro-600/50 text-madera-900"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-carmesi-700 hover:bg-carmesi-600 text-pergamino-50 border border-oro-400 font-heading font-bold uppercase tracking-wider transition">
+          Preparar Ficha de Consulta
+        </button>
+      </form>
+      <div id="confirmacion-modal" class="hidden mt-4 p-4 rounded-xl bg-pergamino-200 border border-carmesi-700 text-madera-900 text-base">
+        <strong>¡Ficha preparada!</strong> Hemos guardado tu simulación de estancia. Te recomendamos contactar directamente con el establecimiento en Navahermosa indicando estas fechas, especialmente durante mayo (Romería de la Milagra) y otoño (Berrea).
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- PIE DE PÁGINA REAL                                                    -->
+  <!-- ===================================================================== -->
+  <footer class="bg-madera-900 text-pergamino-200 border-t-4 border-oro-500 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+      <div>
+        <span class="font-display text-xl text-oro-400">Villa de Navahermosa</span>
+        <p class="mt-2 text-base text-pergamino-300">
+          Comarca de los Montes de Toledo · Provincia de Toledo · Castilla-La Mancha.
+        </p>
+      </div>
+      <div class="text-center">
+        <p class="font-heading text-xs uppercase tracking-[0.2em] text-oro-400 mb-2">Coordenadas de la Villa</p>
+        <p class="text-base">39° 38′ 12″ N · 4° 29′ 08″ O · Altitud: 750 m</p>
+        <p class="text-sm text-pergamino-300/80 mt-1">A 50 km de Toledo capital y a las puertas de Cabañeros</p>
+      </div>
+      <div class="md:text-right">
+        <a href="#inicio" class="inline-block px-4 py-2 rounded-lg border border-oro-500/60 text-oro-400 font-heading text-xs uppercase tracking-wider hover:bg-madera-800 transition">
+          Volver a lo alto de la Atalaya ↑
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- LÓGICA INTERACTIVA JAVASCRIPT                                         -->
+  <!-- ===================================================================== -->
+  <script>
+    // 1. BASE DE DATOS DE MESONES Y MENÚS DIRECTOS
+    const mesonesData = [
+      {
+        id: 'alameda',
+        nombre: 'Restaurante Hotel Alameda',
+        ubicacion: 'Avda. de la Constitución / Acceso principal · Navahermosa',
+        horario: 'Abierto todos los días (Comidas y Cenas)',
+        especialidad: 'Cocina tradicional de los Montes de Toledo, carnes de caza mayor y asados castellanos.',
+        nombreMenu: 'Menú Real de los Montes (Ejemplo Ilustrativo)',
+        precioMenu: '24,00 € / comensal',
+        primeros: [
+          { plato: 'Migas del Pastor con torreznos, uvas y ajo morado', detalle: 'Receta tradicional elaborada con AOVE D.O. Montes de Toledo' },
+          { plato: 'Sopa Castellana en cazuela de barro con huevo escalfado', detalle: 'Con jamón serrano y pimentón de la Vera' },
+          { plato: 'Ensalada templada de perdiz escabechada', detalle: 'Sobre brotes tiernos y vinagreta de miel de brezo' }
+        ],
+        segundos: [
+          { plato: 'Venado en salsa monteña con setas de temporada', detalle: 'Guisado a fuego lento con vino tinto y hierbas aromáticas' },
+          { plato: 'Carrillada de jabalí estofada al vino de Toledo', detalle: 'Acompañada de patatas panadera' },
+          { plato: 'Chuletas de cordero manchego a la brasa', detalle: 'Con guarnición de pimientos asados' }
+        ],
+        postres: [
+          'Arroz con leche cremoso tostado al hierro',
+          'Queso manchego curado en aceite con membrillo casero',
+          'Natillas de la abuela con galleta y canela'
+        ]
+      },
+      {
+        id: 'cibeles',
+        nombre: 'Bar Restaurante Cibeles',
+        ubicacion: 'Centro Urbano · Navahermosa',
+        horario: 'Viernes a Miércoles (Cerrado los jueves)',
+        especialidad: 'Desayunos serranos, aperitivos, raciones tradicionales y tapeo local.',
+        nombreMenu: 'Carta de Raciones y Taberna Castellana (Ilustrativa)',
+        precioMenu: 'Raciones entre 8,50 € y 16,00 €',
+        primeros: [
+          { plato: 'Carcamusas toledanas tradicionales', detalle: 'Magro de cerdo guisado con tomate, guisantes y un toque picante (10,50 €)' },
+          { plato: 'Oreja a la plancha crujiente con ajo y perejil', detalle: 'Clásico del aperitivo navahermoseño (9,50 €)' },
+          { plato: 'Revuelto de morcilla de matanza con piñones', detalle: 'Servido con tostas de pan de pueblo (11,00 €)' }
+        ],
+        segundos: [
+          { plato: 'Secreto ibérico a la plancha con patatas fritas caseras', detalle: 'Con sal en escamas (14,50 €)' },
+          { plato: 'Calamares a la romana y chopitos', detalle: 'Fritura tradicional para compartir (12,00 €)' },
+          { plato: 'Montaditos variados de lomo de orza y queso', detalle: 'Ideales para reponer fuerzas tras la ruta (4,50 € / ud)' }
+        ],
+        postres: [
+          'Flan casero de huevo con nata',
+          'Tarta de queso al horno',
+          'Café de puchero y orujo de hierbas'
+        ]
+      },
+      {
+        id: 'molinos',
+        nombre: 'Hostal - Restaurante Los Molinos',
+        ubicacion: 'Calle Molinos · Navahermosa',
+        horario: 'Abierto toda la semana · Menú diario y fin de semana',
+        especialidad: 'Comida casera abundante, guisos de cuchara y menús para viajeros.',
+        nombreMenu: 'Menú del Caminante y Arriero (Ejemplo Ilustrativo)',
+        precioMenu: '15,50 € (Laborables) · 21,00 € (Fin de semana)',
+        primeros: [
+          { plato: 'Judías blancas estofadas con chorizo y oreja', detalle: 'Guiso lento tradicional de puchero' },
+          { plato: 'Pisto manchego con huevo frito de corral', detalle: 'Hortalizas de huerta pochadas en aceite de oliva virgen extra' },
+          { plato: 'Macarrones gratinados al estilo casero', detalle: 'Con sofrito tradicional y queso curado' }
+        ],
+        segundos: [
+          { plato: 'Caldereta de cordero al estilo de los Montes', detalle: 'Receta pastoril con majado de ajo y laurel' },
+          { plato: 'Filete de ternera de la comarca a la plancha', detalle: 'Con patatas y pimientos verdes' },
+          { plato: 'Bacalao rebozado con pisto o tomate casero', detalle: 'Clásico de las posadas castellanas' }
+        ],
+        postres: [
+          'Cuajada con miel de los Montes de Toledo',
+          'Fruta del tiempo o helado',
+          'Pan, vino de la casa o agua incluidos'
+        ]
+      },
+      {
+        id: 'camping',
+        nombre: 'Restaurante Camping Navahermosa',
+        ubicacion: 'Camino de Hontanar · Entorno natural',
+        horario: 'Viernes, Sábados y Domingos',
+        especialidad: 'Comida campestre, carnes a la brasa y platos típicos tras jornadas de senderismo.',
+        nombreMenu: 'Menú del Montero y Senderista (Ejemplo Ilustrativo)',
+        precioMenu: '19,50 € / comensal',
+        primeros: [
+          { plato: 'Gachas manchegas tradicionales con panceta', detalle: 'Elaboradas con harina de almortas y pimentón' },
+          { plato: 'Patatas revolconas con torreznos crujientes', detalle: 'Plato energético ideal tras subir a Dos Hermanas' },
+          { plato: 'Ensalada de la huerta con ventresca y AOVE', detalle: 'Producto fresco de temporada' }
+        ],
+        segundos: [
+          { plato: 'Parrillada de carnes a la brasa de encina', detalle: 'Chorizo, panceta, presa y churrasco' },
+          { plato: 'Estofado de ciervo con patatas', detalle: 'Especialidad de temporada cinegética' },
+          { plato: 'Pollo de corral asado a las finas hierbas', detalle: 'Con guarnición campestre' }
+        ],
+        postres: [
+          'Tarta de la abuela de chocolate y galleta',
+          'Melón o sandía (en temporada) / Fruta',
+          'Requesón con miel serrana'
+        ]
+      },
+      {
+        id: 'montes',
+        nombre: 'Restaurante Montes de Toledo',
+        ubicacion: 'Urb. Río Cedena (Ctra. hacia Los Navalmorales)',
+        horario: 'Viernes a Miércoles (Cerrado los jueves)',
+        especialidad: 'Gastronomía comarcal en entorno tranquilo junto al valle del río Cedena.',
+        nombreMenu: 'Menú Valle del Cedena (Ejemplo Ilustrativo)',
+        precioMenu: '22,00 € / comensal',
+        primeros: [
+          { plato: 'Sopa de picadillo castellana', detalle: 'Caldo concentrado con jamón, huevo duro y picatostes' },
+          { plato: 'Croquetas caseras de jamón ibérico y boletus', detalle: 'Cremosas por dentro y crujientes por fuera' },
+          { plato: 'Espárragos trigueros a la plancha con jamón', detalle: 'Aderezados con aceite virgen extra' }
+        ],
+        segundos: [
+          { plato: 'Perdiz estofada a la toledana', detalle: 'Plato estrella de la cocina señorial de Toledo' },
+          { plato: 'Codillo de cerdo asado en su jugo', detalle: 'Tierno y dorado al horno' },
+          { plato: 'Merluza a la cazuela en salsa verde', detalle: 'Alternativa marinera tradicional' }
+        ],
+        postres: [
+          'Torrija caramelizada con helado de vainilla',
+          'Pudin casero de bizcocho',
+          'Sorbete de limón'
+        ]
+      }
+    ];
+
+    // 2. BASE DE DATOS DE ALOJAMIENTOS (POSADAS Y CASAS RURALES)
+    const alojamientosData = [
+      {
+        nombre: 'Hotel Alameda Navahermosa',
+        tipo: 'pueblo',
+        etiqueta: 'En el Casco Urbano',
+        capacidad: 'Habitaciones dobles, triples y familiares',
+        desc: 'Establecimiento de referencia en el pueblo. Ideal para viajeros que desean tener todos los servicios, restaurantes y monumentos a un paso.',
+        servicios: ['Aire acondicionado', 'Restaurante propio', 'Wi-Fi', 'Fácil aparcamiento']
+      },
+      {
+        nombre: 'Hostal Los Molinos',
+        tipo: 'pueblo',
+        etiqueta: 'En el Casco Urbano',
+        capacidad: 'Habitaciones individuales y dobles',
+        desc: 'Alojamiento acogedor y funcional en la calle Molinos, muy apreciado por senderistas y trabajadores por su trato cercano y cocina casera.',
+        servicios: ['Restaurante en el edificio', 'Calefacción', 'Ubicación céntrica']
+      },
+      {
+        nombre: 'Bungalows y Parcelas Camping Navahermosa',
+        tipo: 'naturaleza',
+        etiqueta: 'En Plena Naturaleza',
+        capacidad: 'Bungalows de madera (2-5 plazas) y zona de acampada',
+        desc: 'Ubicado en el Camino de Hontanar, al pie de la sierra. Permite despertar rodeado de encinas y salir caminando directo hacia las rutas.',
+        servicios: ['Entorno de montaña', 'Piscina de verano', 'Restaurante fin de semana', 'Admite mascotas (consultar)']
+      },
+      {
+        nombre: 'Casas Rurales Entorno Sierra de Galinda y Hoz de Carboneros',
+        tipo: 'grupos',
+        etiqueta: 'Casas Rurales · Grupos y Familias',
+        capacidad: 'De 6 a 14 plazas (alquiler íntegro)',
+        desc: 'Viviendas tradicionales rehabilitadas en piedra y madera en Navahermosa y su término, equipadas para reuniones familiares y escapadas de fin de semana.',
+        servicios: ['Chimenea de leña', 'Barbacoa y patio', 'Cocina completa', 'Vistas a los Montes']
+      },
+      {
+        nombre: 'Alojamientos Rurales Valle del Cedena y Hontanar',
+        tipo: 'naturaleza',
+        etiqueta: 'A 10 min · Naturaleza Pura',
+        capacidad: 'Casas rurales de 4 a 10 plazas',
+        desc: 'En el vecino municipio de Hontanar y el valle del río Cedena, perfectas para desconectar bajo cielos limpios ideales para observar las estrellas.',
+        servicios: ['Jardín privado', 'Chimenea', 'Acceso directo a senderos', 'Silencio absoluto']
+      },
+      {
+        nombre: 'Posadas Rurales Puerta de Cabañeros',
+        tipo: 'grupos',
+        etiqueta: 'Comarca · Grupos y Naturaleza',
+        capacidad: 'De 8 a 16 plazas en fincas rústicas',
+        desc: 'Fincas y casas de labranza entre Navahermosa, Los Navalucillos y Retuerta del Bullaque, diseñadas para grupos que visitan el Parque Nacional.',
+        servicios: ['Piscina privada', 'Salón amplio con chimenea', 'Excursiones 4x4 cercanas']
+      }
+    ];
+
+    // 3. BASE DE DATOS DE ACTIVIDADES (NAVAHERMOSA Y PUEBLOS CERCANOS)
+    const actividadesData = [
+      {
+        titulo: 'Ruta de la Hoz de Carboneros',
+        lugar: 'navahermosa',
+        lugarTexto: 'Navahermosa – Hontanar',
+        distancia: 'En el municipio',
+        categoria: 'Senderismo · Naturaleza',
+        dificultad: 'Media (12 km ida y vuelta)',
+        desc: 'El sendero estrella de la localidad. Atraviesa un bosque mediterráneo de encinas, alcornoques y quejigos junto al arroyo, con pequeños saltos de agua en época de lluvias.'
+      },
+      {
+        titulo: 'Ascenso al Castillo de Dos Hermanas al Atardecer',
+        lugar: 'navahermosa',
+        lugarTexto: 'Navahermosa',
+        distancia: 'A 2 km del centro',
+        categoria: 'Historia · Mirador',
+        dificultad: 'Fácil – Media',
+        desc: 'Subida hasta la fortaleza medieval del siglo XI-XII. Desde sus murallas se domina todo el valle de Navahermosa y las estribaciones de los Montes de Toledo.'
+      },
+      {
+        titulo: 'Rutas BTT y Cicloturismo por los Montes',
+        lugar: 'navahermosa',
+        lugarTexto: 'Navahermosa y alrededores',
+        distancia: 'Salida desde el pueblo',
+        categoria: 'Deporte · Aventura',
+        dificultad: 'Variable (Rutas de 25 a 60 km)',
+        desc: 'Caminos públicos y pistas forestales entre olivares centenarios y dehesas ideales para bicicleta de montaña o gravel con desniveles exigentes.'
+      },
+      {
+        titulo: 'Despoblado y Castillo de Malamoneda',
+        lugar: 'hontanar',
+        lugarTexto: 'Hontanar',
+        distancia: 'A 10 min en coche',
+        categoria: 'Arqueología · Senderismo',
+        dificultad: 'Fácil',
+        desc: 'Paraje mágico junto al río Cedena donde conviven una torre vigía medieval, ruinas de un antiguo poblado y una necrópolis de tumbas excavadas en granito.'
+      },
+      {
+        titulo: 'Ermita Visigoda de Santa María de Melque',
+        lugar: 'montalban',
+        lugarTexto: 'San Martín de Montalbán',
+        distancia: 'A 20 min en coche',
+        categoria: 'Patrimonio Histórico',
+        dificultad: 'Visita cultural',
+        desc: 'Uno de los conjuntos monásticos visigodos (siglos VII-VIII) mejor conservados de Europa, con impresionantes muros de sillería granítica y centro de interpretación.'
+      },
+      {
+        titulo: 'Castillo de Montalbán',
+        lugar: 'montalban',
+        lugarTexto: 'San Martín de Montalbán',
+        distancia: 'A 25 min en coche',
+        categoria: 'Fortaleza Templaria',
+        dificultad: 'Visita concertada / exterior',
+        desc: 'Imponente fortaleza vinculada a la Orden del Temple y a Don Álvaro de Luna, encaramada sobre el profundo tajo del río Torcón.'
+      },
+      {
+        titulo: 'Rutas 4x4 por la Raña y Berrea en Cabañeros',
+        lugar: 'cabaneros',
+        lugarTexto: 'Parque Nacional de Cabañeros',
+        distancia: 'A 20-25 min en coche',
+        categoria: 'Fauna · Ecoturismo',
+        dificultad: 'Todos los públicos',
+        desc: 'Recorrido guiado por el llamado "Serengueti español" para avistar manadas de ciervos, jabalíes, buitres negros y águilas imperiales en libertad.'
+      },
+      {
+        titulo: 'Ruta del Chorro de los Navalucillos',
+        lugar: 'cabaneros',
+        lugarTexto: 'Los Navalucillos',
+        distancia: 'A 25 min en coche',
+        categoria: 'Senderismo · Cascada',
+        dificultad: 'Media (16 km)',
+        desc: 'Senda paralela al arroyo del Chorro entre robles melojos y tejos hasta alcanzar una espectacular cascada de 15 metros de caída en pleno Parque Nacional.'
+      },
+      {
+        titulo: 'Ruta Gastronómica por Menasalbas y Gálvez',
+        lugar: 'cabaneros',
+        lugarTexto: 'Menasalbas / Gálvez',
+        distancia: 'A 15-20 min en coche',
+        categoria: 'Gastronomía · Cultura',
+        dificultad: 'Visita tranquila',
+        desc: 'Excursión complementaria para degustar las afamadas carnes de vacuno de Menasalbas y visitar el Rollo de Justicia y patrimonio de Gálvez.'
+      }
+    ];
+
+    // =====================================================================
+    // RENDERIZADO DE MESONES Y MENÚS DIRECTOS
+    // =====================================================================
+    const tabsMesonesEl = document.getElementById('tabs-mesones');
+    const contenedorMenuEl = document.getElementById('contenedor-menu-activo');
+    let mesonSeleccionadoId = mesonesData[0].id;
+
+    function renderizarTabsMesones() {
+      tabsMesonesEl.innerHTML = mesonesData.map(m => {
+        const activo = m.id === mesonSeleccionadoId;
+        return `
+          <button 
+            onclick="seleccionarMeson('${m.id}')"
+            class="px-4 py-2.5 rounded-xl border font-heading text-xs sm:text-sm font-semibold transition shadow-sm ${
+              activo 
+                ? 'tab-activo shadow-md scale-[1.02]' 
+                : 'bg-pergamino-50 text-madera-900 border-oro-600/50 hover:bg-pergamino-100'
+            }">
+            ${m.nombre}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderizarMenuActivo() {
+      const meson = mesonesData.find(m => m.id === mesonSeleccionadoId);
+      if (!meson) return;
+
+      contenedorMenuEl.innerHTML = `
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b-2 border-oro-600/40 pb-6 mb-6">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full bg-carmesi-800 text-oro-400 font-heading text-xs uppercase tracking-wider mb-2">
+              Mesón de la Villa
+            </span>
+            <h3 class="font-display text-2xl sm:text-3xl text-madera-900">${meson.nombre}</h3>
+            <p class="text-base text-madera-700 mt-1">📍 ${meson.ubicacion} · 🕒 ${meson.horario}</p>
+          </div>
+          <div class="bg-pergamino-100 border border-oro-600 rounded-xl p-4 text-left lg:text-right shrink-0">
+            <span class="block font-heading text-xs uppercase tracking-wider text-carmesi-700 font-bold">${meson.nombreMenu}</span>
+            <span class="font-display text-xl sm:text-2xl text-madera-900 font-bold">${meson.precioMenu}</span>
+          </div>
+        </div>
+
+        <p class="text-lg text-madera-800 italic mb-8">
+          "${meson.especialidad}"
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Primeros / Entrantes -->
+          <div class="bg-pergamino-100/80 rounded-xl p-5 border border-oro-600/30">
+            <h4 class="font-heading text-lg font-bold text-carmesi-800 border-b border-oro-600/30 pb-2 mb-4 flex items-center gap-2">
+              <span>🍲</span> Primeros y Entrantes
+            </h4>
+            <ul class="space-y-4">
+              ${meson.primeros.map(item => `
+                <li>
+                  <p class="font-bold text-madera-900 text-base sm:text-lg leading-snug">${item.plato}</p>
+                  <p class="text-sm text-madera-700 mt-0.5">${item.detalle}</p>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <!-- Segundos / Carnes y Caza -->
+          <div class="bg-pergamino-100/80 rounded-xl p-5 border border-oro-600/30">
+            <h4 class="font-heading text-lg font-bold text-carmesi-800 border-b border-oro-600/30 pb-2 mb-4 flex items-center gap-2">
+              <span>🍖</span> Segundos y Caza Mayor
+            </h4>
+            <ul class="space-y-4">
+              ${meson.segundos.map(item => `
+                <li>
+                  <p class="font-bold text-madera-900 text-base sm:text-lg leading-snug">${item.plato}</p>
+                  <p class="text-sm text-madera-700 mt-0.5">${item.detalle}</p>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <!-- Postres y Bodega -->
+          <div class="bg-pergamino-100/80 rounded-xl p-5 border border-oro-600/30 flex flex-col justify-between">
+            <div>
+              <h4 class="font-heading text-lg font-bold text-carmesi-800 border-b border-oro-600/30 pb-2 mb-4 flex items-center gap-2">
+                <span>🍯</span> Postres Caseros
+              </h4>
+              <ul class="space-y-3 text-base text-madera-900">
+                ${meson.postres.map(p => `<li class="flex items-start gap-2"><span class="text-oro-600">✦</span><span>${p}</span></li>`).join('')}
+              </ul>
+            </div>
+            <div class="mt-6 pt-3 border-t border-oro-600/30 text-xs font-heading uppercase tracking-wider text-madera-700">
+              Aliñado con AOVE D.O. Montes de Toledo
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.seleccionarMeson = function(id) {
+      mesonSeleccionadoId = id;
+      renderizarTabsMesones();
+      renderizarMenuActivo();
+    };
+
+    // =====================================================================
+    // RENDERIZADO Y FILTRADO DE ALOJAMIENTOS
+    // =====================================================================
+    const gridAlojamientosEl = document.getElementById('grid-alojamientos');
+
+    function renderizarAlojamientos(filtro = 'todos') {
+      const filtrados = filtro === 'todos' 
+        ? alojamientosData 
+        : alojamientosData.filter(a => a.tipo === filtro);
+
+      gridAlojamientosEl.innerHTML = filtrados.map(aloj => `
+        <article class="bg-madera-800 rounded-2xl p-6 marco-oscuro flex flex-col justify-between transition hover:-translate-y-1">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full bg-carmesi-700 text-oro-400 font-heading text-xs font-semibold">
+                ${aloj.etiqueta}
+              </span>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-pergamino-50 mb-2">${aloj.nombre}</h3>
+            <p class="text-sm font-heading text-oro-400 mb-3">👥 ${aloj.capacidad}</p>
+            <p class="text-base text-pergamino-200 leading-relaxed mb-5">${aloj.desc}</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              ${aloj.servicios.map(s => `
+                <span class="px-2.5 py-1 rounded-md bg-madera-900/90 border border-oro-500/30 text-xs text-pergamino-200">
+                  ${s}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+          <button 
+            onclick="abrirModalAlojamiento('${aloj.nombre.replace(/'/g, "\\'")}', '${aloj.capacidad.replace(/'/g, "\\'")}')"
+            class="w-full py-2.5 px-4 rounded-xl bg-oro-500 hover:bg-oro-400 text-madera-900 font-heading text-xs sm:text-sm font-bold uppercase tracking-wider transition">
+            Simular Estancia / Consultar
+          </button>
+        </article>
+      `).join('');
+    }
+
+    document.querySelectorAll('.filtro-aloj').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filtro-aloj').forEach(b => {
+          b.classList.remove('tab-activo');
+          b.classList.add('bg-madera-800');
+        });
+        btn.classList.add('tab-activo');
+        btn.classList.remove('bg-madera-800');
+        renderizarAlojamientos(btn.dataset.filtroAloj);
+      });
+    });
+
+    // =====================================================================
+    // RENDERIZADO Y FILTRADO DE ACTIVIDADES
+    // =====================================================================
+    const gridActividadesEl = document.getElementById('grid-actividades');
+
+    function renderizarActividades(filtro = 'todas') {
+      const filtradas = filtro === 'todas'
+        ? actividadesData
+        : actividadesData.filter(act => act.lugar === filtro);
+
+      gridActividadesEl.innerHTML = filtradas.map(act => `
+        <article class="bg-pergamino-50 rounded-2xl p-6 marco-castellano flex flex-col justify-between hover:-translate-y-1 transition">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full bg-carmesi-800 text-oro-400 font-heading text-xs font-bold">
+                ${act.lugarTexto}
+              </span>
+              <span class="text-xs font-heading uppercase text-madera-700 font-semibold">${act.distancia}</span>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-madera-900 mb-2">${act.titulo}</h3>
+            <p class="text-base text-madera-800 leading-relaxed mb-4">${act.desc}</p>
+          </div>
+          <div class="pt-3 border-t border-oro-600/30 flex items-center justify-between text-xs font-heading text-carmesi-800 font-bold">
+            <span>${act.categoria}</span>
+            <span>${act.dificultad}</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    document.querySelectorAll('.filtro-act').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filtro-act').forEach(b => {
+          b.classList.remove('tab-activo');
+          b.classList.add('text-madera-900');
+        });
+        btn.classList.add('tab-activo');
+        btn.classList.remove('text-madera-900');
+        renderizarActividades(btn.dataset.filtroAct);
+      });
+    });
+
+    // =====================================================================
+    // BUSCADOR RÁPIDO EN PORTADA
+    // =====================================================================
+    const indiceBusqueda = [
+      { titulo: 'Castillo de Dos Hermanas', tipo: 'Monumento', link: '#monumentos', texto: 'Fortaleza medieval en el risco con vistas panorámicas' },
+      { titulo: 'Parroquia de San Miguel Arcángel', tipo: 'Monumento', link: '#monumentos', texto: 'Templo renacentista siglo XVI, artesonado mudéjar y órgano barroco' },
+      { titulo: 'Ermita de la Virgen del Milagro (La Milagra)', tipo: 'Monumento / Romería', link: '#monumentos', texto: 'Santuario de la patrona y romería el tercer domingo de mayo' },
+      { titulo: 'Ermita de San Sebastián', tipo: 'Monumento / Fiesta', link: '#fiestas', texto: 'Hogueras el 20 de enero y ermita tradicional del siglo XVI' },
+      { titulo: 'Restaurante Hotel Alameda', tipo: 'Mesón y Menú', link: '#mesones', texto: 'Venado en salsa, migas del pastor, jabalí estofado' },
+      { titulo: 'Bar Cibeles · Hostal Los Molinos · Camping', tipo: 'Mesones', link: '#mesones', texto: 'Carcamusas, pisto manchego, caldereta, gachas y caza' },
+      { titulo: 'Posadas y Casas Rurales', tipo: 'Alojamiento', link: '#posadas', texto: 'Hotel Alameda, bungalows en la sierra y casas para grupos' },
+      { titulo: 'Fiestas de San Miguel Arcángel', tipo: 'Fiestas', link: '#fiestas', texto: 'Finales de septiembre (29 de septiembre), encierros, peñas y verbenas' },
+      { titulo: 'Ruta de la Hoz de Carboneros', tipo: 'Actividad', link: '#actividades', texto: 'Senderismo entre encinas y alcornoques hacia Hontanar' },
+      { titulo: 'Parque Nacional de Cabañeros y Melque', tipo: 'Excursión cercana', link: '#actividades', texto: 'Rutas 4x4, berrea del ciervo, Santa María de Melque y Malamoneda' }
+    ];
+
+    const inputBuscador = document.getElementById('buscador-guia');
+    const resultadosDiv = document.getElementById('resultados-busqueda');
+    const btnLimpiar = document.getElementById('btn-limpiar-busqueda');
+
+    inputBuscador.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        resultadosDiv.classList.add('hidden');
+        btnLimpiar.classList.add('hidden');
+        return;
+      }
+      btnLimpiar.classList.remove('hidden');
+      const coincidencias = indiceBusqueda.filter(item => 
+        item.titulo.toLowerCase().includes(q) || 
+        item.texto.toLowerCase().includes(q) || 
+        item.tipo.toLowerCase().includes(q)
+      );
+
+      resultadosDiv.classList.remove('hidden');
+      if (coincidencias.length === 0) {
+        resultadosDiv.innerHTML = `<p class="text-sm text-madera-700 italic">No se hallaron pergaminos con "${e.target.value}". Prueba con "venado", "castillo", "milagra" o "cabañeros".</p>`;
+      } else {
+        resultadosDiv.innerHTML = coincidencias.map(c => `
+          <a href="${c.link}" class="block p-2.5 rounded-lg bg-pergamino-50 hover:bg-pergamino-200 border border-oro-600/30 transition">
+            <div class="flex items-center justify-between">
+              <strong class="font-heading text-sm text-carmesi-800">${c.titulo}</strong>
+              <span class="text-xs font-heading uppercase text-oro-600 font-bold">${c.tipo} →</span>
+            </div>
+            <p class="text-sm text-madera-700">${c.texto}</p>
+          </a>
+        `).join('');
+      }
+    });
+
+    btnLimpiar.addEventListener('click', () => {
+      inputBuscador.value = '';
+      resultadosDiv.classList.add('hidden');
+      btnLimpiar.classList.add('hidden');
+    });
+
+    // =====================================================================
+    // GENERADOR INTERACTIVO DE PERGAMINO DE VIAJE
+    // =====================================================================
+    let diasSeleccionados = 1;
+    const contenidoPergaminoEl = document.getElementById('contenido-pergamino');
+
+    document.querySelectorAll('.btn-dias').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-dias').forEach(b => {
+          b.classList.remove('tab-activo');
+          b.classList.add('bg-pergamino-100', 'text-madera-900');
+        });
+        btn.classList.add('tab-activo');
+        btn.classList.remove('bg-pergamino-100', 'text-madera-900');
+        diasSeleccionados = parseInt(btn.dataset.dias, 10);
+        generarPergamino();
+      });
+    });
+
+    function generarPergamino() {
+      const intereses = Array.from(document.querySelectorAll('.chk-interes:checked')).map(c => c.value);
+      
+      let html = `
+        <div class="bg-pergamino-100 p-4 rounded-xl border border-oro-600/30">
+          <h4 class="font-heading font-bold text-carmesi-800 uppercase text-sm mb-2">Jornada Primera · El Corazón de la Villa</h4>
+          <ul class="space-y-2 text-base">
+            <li><strong>Mañana:</strong> ${intereses.includes('senderismo') 
+              ? 'Ruta senderista por la <em>Hoz de Carboneros</em> entre encinas y alcornoques.' 
+              : 'Paseo monumental por la <em>Parroquia de San Miguel Arcángel</em> (siglo XVI) y la <em>Ermita de San Sebastián</em>.'}</li>
+            <li><strong>Mediodía:</strong> ${intereses.includes('gastronomia') 
+              ? 'Almuerzo tradicional en los mesones de la villa degustando <em>migas del pastor</em> y <em>venado en salsa monteña</em> con AOVE D.O. Montes de Toledo.' 
+              : 'Descanso y tapeo de raciones típicas en el centro del pueblo.'}</li>
+            <li><strong>Tarde:</strong> ${intereses.includes('historia') 
+              ? 'Subida al risco del <em>Castillo de Dos Hermanas</em> para contemplar el atardecer sobre los Montes y visita al entorno de la <em>Ermita de la Milagra</em>.' 
+              : 'Paseo tranquilo por el paraje natural de La Milagra y compra de aceite virgen extra y miel local.'}</li>
+          </ul>
+        </div>
+      `;
+
+      if (diasSeleccionados === 2) {
+        html += `
+          <div class="bg-pergamino-100 p-4 rounded-xl border border-oro-600/30">
+            <h4 class="font-heading font-bold text-carmesi-800 uppercase text-sm mb-2">Jornada Segunda · Tierras de Comarca y Cabañeros</h4>
+            <ul class="space-y-2 text-base">
+              <li><strong>Mañana:</strong> ${intereses.includes('comarca') 
+                ? 'Excursión cultural al despoblado medieval de <em>Malamoneda</em> (Hontanar) y la ermita visigoda de <em>Santa María de Melque</em>.' 
+                : 'Incursión en el <em>Parque Nacional de Cabañeros</em> (ruta 4x4 por la raña o sendero del Chorro de los Navalucillos).'}</li>
+              <li><strong>Mediodía:</strong> Comida campestre o menú serrano en el entorno del valle del río Cedena o de regreso en Navahermosa.</li>
+              <li><strong>Tarde:</strong> Despedida de la villa con café en la plaza y visita a las almazaras locales.</li>
+            </ul>
+          </div>
+        `;
+      }
+
+      contenidoPergaminoEl.innerHTML = html;
+    }
+
+    document.getElementById('btn-generar-pergamino').addEventListener('click', generarPergamino);
+    document.querySelectorAll('.chk-interes').forEach(chk => chk.addEventListener('change', generarPergamino));
+
+    // Copiar itinerario al portapapeles de forma compatible
+    document.getElementById('btn-copiar-itinerario').addEventListener('click', () => {
+      const texto = "PERGAMINO DE VIAJE - VILLA DE NAVAHERMOSA (TOLEDO)\n\n" + contenidoPergaminoEl.innerText;
+      const areaTemp = document.createElement('textarea');
+      areaTemp.value = texto;
+      document.body.appendChild(areaTemp);
+      areaTemp.select();
+      try {
+        document.execCommand('copy');
+        const msg = document.getElementById('mensaje-copiado');
+        msg.classList.remove('hidden');
+        setTimeout(() => msg.classList.add('hidden'), 3500);
+      } catch (err) {
+        console.error('No se pudo copiar:', err);
+      }
+      document.body.removeChild(areaTemp);
+    });
+
+    // =====================================================================
+    // MODAL DE CONSULTA DE ALOJAMIENTO Y MENÚ MÓVIL
+    // =====================================================================
+    const modalReserva = document.getElementById('modal-reserva');
+    const confirmacionModal = document.getElementById('confirmacion-modal');
+
+    window.abrirModalAlojamiento = function(nombre, capacidad) {
+      document.getElementById('modal-titulo-aloj').textContent = nombre;
+      document.getElementById('modal-desc-aloj').textContent = `Capacidad estimada: ${capacidad}`;
+      confirmacionModal.classList.add('hidden');
+      modalReserva.classList.remove('hidden');
+      modalReserva.classList.add('flex');
+    };
+
+    document.getElementById('cerrar-modal').addEventListener('click', () => {
+      modalReserva.classList.add('hidden');
+      modalReserva.classList.remove('flex');
+    });
+
+    modalReserva.addEventListener('click', (e) => {
+      if (e.target === modalReserva) {
+        modalReserva.classList.add('hidden');
+        modalReserva.classList.remove('flex');
+      }
+    });
+
+    document.getElementById('form-consulta-aloj').addEventListener('submit', (e) => {
+      e.preventDefault();
+      confirmacionModal.classList.remove('hidden');
+    });
+
+    // Menú hamburguesa móvil
+    const btnMenuMovil = document.getElementById('btn-menu-movil');
+    const menuMovil = document.getElementById('menu-movil');
+    const iconoAbrir = document.getElementById('icono-abrir');
+    const iconoCerrar = document.getElementById('icono-cerrar');
+
+    btnMenuMovil.addEventListener('click', () => {
+      const oculto = menuMovil.classList.toggle('hidden');
+      iconoAbrir.classList.toggle('hidden', !oculto);
+      iconoCerrar.classList.toggle('hidden', oculto);
+    });
+
+    menuMovil.querySelectorAll('a').forEach(enlace => {
+      enlace.addEventListener('click', () => {
+        menuMovil.classList.add('hidden');
+        iconoAbrir.classList.remove('hidden');
+        iconoCerrar.classList.add('hidden');
+      });
+    });
+
+    // Inicialización al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      renderizarTabsMesones();
+      renderizarMenuActivo();
+      renderizarAlojamientos('todos');
+      renderizarActividades('todas');
+      generarPergamino();
+    });
+  </script>
+</body>
+</html>
